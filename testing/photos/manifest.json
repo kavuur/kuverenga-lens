@@ -1,0 +1,86 @@
+[
+ {
+  "file": "english_1_good.jpg",
+  "lang": "english",
+  "condition": "1_good",
+  "truth": "Science: Plants Plants need water and sunlight to grow. The leaves make food for the plant. Roots take water from the soil."
+ },
+ {
+  "file": "english_2_angle.jpg",
+  "lang": "english",
+  "condition": "2_angle",
+  "truth": "Science: Plants Plants need water and sunlight to grow. The leaves make food for the plant. Roots take water from the soil."
+ },
+ {
+  "file": "english_3_shake.jpg",
+  "lang": "english",
+  "condition": "3_shake",
+  "truth": "Science: Plants Plants need water and sunlight to grow. The leaves make food for the plant. Roots take water from the soil."
+ },
+ {
+  "file": "english_4_dim.jpg",
+  "lang": "english",
+  "condition": "4_dim",
+  "truth": "Science: Plants Plants need water and sunlight to grow. The leaves make food for the plant. Roots take water from the soil."
+ },
+ {
+  "file": "english_5_glare.jpg",
+  "lang": "english",
+  "condition": "5_glare",
+  "truth": "Science: Plants Plants need water and sunlight to grow. The leaves make food for the plant. Roots take water from the soil."
+ },
+ {
+  "file": "english_6_far.jpg",
+  "lang": "english",
+  "condition": "6_far",
+  "truth": "Science: Plants Plants need water and sunlight to grow. The leaves make food for the plant. Roots take water from the soil."
+ },
+ {
+  "file": "english_7_dusty.jpg",
+  "lang": "english",
+  "condition": "7_dusty",
+  "truth": "Science: Plants Plants need water and sunlight to grow. The leaves make food for the plant. Roots take water from the soil."
+ },
+ {
+  "file": "shona_1_good.jpg",
+  "lang": "shona",
+  "condition": "1_good",
+  "truth": "Chishona: Rondedzero Mwana anoenda kuchikoro mangwanani. Amai vari kubika sadza. Baba vari kurima munda wechibage."
+ },
+ {
+  "file": "shona_2_angle.jpg",
+  "lang": "shona",
+  "condition": "2_angle",
+  "truth": "Chishona: Rondedzero Mwana anoenda kuchikoro mangwanani. Amai vari kubika sadza. Baba vari kurima munda wechibage."
+ },
+ {
+  "file": "shona_3_shake.jpg",
+  "lang": "shona",
+  "condition": "3_shake",
+  "truth": "Chishona: Rondedzero Mwana anoenda kuchikoro mangwanani. Amai vari kubika sadza. Baba vari kurima munda wechibage."
+ },
+ {
+  "file": "shona_4_dim.jpg",
+  "lang": "shona",
+  "condition": "4_dim",
+  "truth": "Chishona: Rondedzero Mwana anoenda kuchikoro mangwanani. Amai vari kubika sadza. Baba vari kurima munda wechibage."
+ },
+ {
+  "file": "shona_5_glare.jpg",
+  "lang": "shona",
+  "condition": "5_glare",
+  "truth": "Chishona: Rondedzero Mwana anoenda kuchikoro mangwanani. Amai vari kubika sadza. Baba vari kurima munda wechibage."
+ },
+ {
+  "file": "shona_6_far.jpg",
+  "lang": "shona",
+  "condition": "6_far",
+  "truth": "Chishona: Rondedzero Mwana anoenda kuchikoro mangwanani. Amai vari kubika sadza. Baba vari kurima munda wechibage."
+ },
+ {
+  "file": "shona_7_dusty.jpg",
+  "lang": "shona",
+  "condition": "7_dusty",
+  "truth": "Chishona: Rondedzero Mwana anoenda kuchikoro mangwanani. Amai vari kubika sadza. Baba vari kurima munda wechibage."
+ }
+]

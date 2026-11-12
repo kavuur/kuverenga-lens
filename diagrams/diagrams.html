@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Kuverenga Lens diagrams</title>
+<style>
+  :root { --board:#1F4D3A; --board2:#2E6B52; --chalk:#FFF8E7; --sun:#F2B33D; --ink:#1B1F1D; --ink2:#52514e; --line:#DCD6C6; --bg:#ffffff; --soft:#F6F2E8; --blue:#2a78d6; --orange:#eb6834; --aqua:#1baf7a; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #e9e6dd; font-family: Verdana, "DejaVu Sans", sans-serif; color: var(--ink); }
+  .fig { background: var(--bg); width: 1600px; padding: 48px 56px; margin: 0 0 40px; }
+  h2 { margin: 0 0 6px; font-size: 34px; color: var(--board); }
+  .sub { margin: 0 0 34px; font-size: 19px; color: var(--ink2); }
+  .row { display: flex; align-items: stretch; gap: 0; }
+  .arrow { flex: none; width: 70px; display: grid; place-items: center; }
+  .arrow svg { width: 54px; height: 30px; }
+  .box { flex: 1; border-radius: 22px; padding: 26px 26px; }
+  .big { background: var(--board); color: var(--chalk); }
+  .big .num { width: 52px; height: 52px; border-radius: 50%; background: var(--sun); color: #5A3D00; display: grid; place-items: center; font-weight: 700; font-size: 26px; margin-bottom: 14px; }
+  .big h3 { margin: 0 0 6px; font-size: 32px; letter-spacing: 1px; }
+  .big .what { font-size: 19px; color: #d9e7df; margin: 0 0 16px; }
+  .big ul { margin: 0; padding-left: 22px; font-size: 18px; line-height: 1.65; }
+  .big svg.icon { width: 64px; height: 64px; fill: var(--sun); float: right; }
+  .note { margin-top: 26px; font-size: 18px; color: var(--ink2); background: var(--soft); border-radius: 14px; padding: 14px 20px; }
+  .note b { color: var(--ink); }
+
+  /* architecture */
+  .phone { border: 4px solid var(--board); border-radius: 34px; padding: 28px; position: relative; background: #FBFAF6; }
+  .phone-label { position: absolute; top: -18px; left: 34px; background: var(--board); color: var(--chalk); padding: 4px 16px; border-radius: 999px; font-weight: 700; font-size: 17px; }
+  .lane { display: flex; align-items: center; }
+  .comp { flex: 1; background: #fff; border: 2px solid var(--line); border-radius: 16px; padding: 16px 16px; min-height: 150px; }
+  .comp h4 { margin: 0 0 8px; font-size: 19px; color: var(--board); }
+  .comp p { margin: 0; font-size: 15.5px; line-height: 1.5; color: var(--ink2); }
+  .comp .tag { display: inline-block; margin-top: 10px; font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: #E7F0EB; color: var(--board); }
+  .comp.key { border-color: var(--sun); border-width: 3px; }
+  .a2 { flex: none; width: 34px; text-align: center; color: var(--board); font-size: 26px; font-weight: 700; }
+  .store { display: flex; gap: 18px; margin-top: 22px; }
+  .store .comp { min-height: 0; background: #F3F7F4; }
+  .cloud { margin-top: 26px; display: flex; gap: 20px; align-items: center; }
+  .cloud .comp { flex: none; width: 520px; min-height: 0; border-style: dashed; }
+  .cloud .txt { font-size: 17px; color: var(--ink2); line-height: 1.5; }
+
+  /* design cycle */
+  .cycle { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px 0; position: relative; }
+  .stage { margin: 0 14px; border-radius: 18px; padding: 20px; background: #fff; border: 2px solid var(--line); min-height: 210px; position: relative; }
+  .stage .n { font-size: 15px; font-weight: 700; color: #fff; background: var(--board); border-radius: 999px; padding: 3px 12px; display: inline-block; margin-bottom: 10px; }
+  .stage h4 { margin: 0 0 8px; font-size: 21px; }
+  .stage p { margin: 0; font-size: 15.5px; line-height: 1.5; color: var(--ink2); }
+  .stage.res .n { background: var(--aqua); }
+  .stage.des .n { background: var(--blue); }
+  .stage.tst .n { background: var(--orange); }
+  .stage .go { position: absolute; right: -27px; top: 50%; transform: translateY(-50%); color: var(--board); font-size: 30px; font-weight: 700; z-index: 2; }
+  .loop { margin: 26px 14px 0; border: 3px dashed var(--orange); border-radius: 18px; padding: 16px 22px; font-size: 18px; color: var(--ink); background: #FFF6F1; }
+  .loop b { color: #B0451A; }
+  .legend { display: flex; gap: 26px; margin: 0 0 22px; font-size: 16px; color: var(--ink2); }
+  .legend span::before { content: ""; display: inline-block; width: 16px; height: 16px; border-radius: 4px; margin-right: 8px; vertical-align: -2px; background: var(--c); }
+
+  /* pipeline */
+  .pipe { display: flex; align-items: flex-start; }
+  .stagei { flex: 1; }
+  .stagei img, .stagei .textout { width: 100%; aspect-ratio: 1.6; object-fit: cover; border-radius: 14px; border: 2px solid var(--line); display: block; }
+  .stagei .textout { background: #FFF6DC; font-family: "OpenDyslexic", Verdana, sans-serif; font-size: 17px; line-height: 1.85; padding: 14px 16px; overflow: hidden; word-spacing: .12em; }
+  .textout .bad { text-decoration: underline wavy #C2410C; }
+  .stagei h4 { margin: 14px 0 4px; font-size: 20px; }
+  .stagei p { margin: 0; font-size: 15.5px; color: var(--ink2); line-height: 1.45; }
+  .pipe .a2 { width: 46px; margin-top: 110px; }
+
+  /* screen flow */
+  .flow { display: flex; align-items: flex-start; justify-content: space-between; }
+  .scr { width: 230px; text-align: center; }
+  .scr img { width: 230px; border-radius: 22px; border: 6px solid #222; display: block; box-shadow: 0 6px 18px rgba(0,0,0,.15); }
+  .scr h4 { margin: 14px 0 4px; font-size: 18px; color: var(--board); }
+  .scr p { margin: 0; font-size: 14.5px; color: var(--ink2); line-height: 1.45; }
+  .flow .a2 { margin-top: 220px; width: 40px; }
+</style>
+<link rel="preload" href="../app/fonts/OpenDyslexic-Regular.woff" as="font" crossorigin>
+<style>@font-face { font-family: "OpenDyslexic"; src: url("../app/fonts/OpenDyslexic-Regular.woff") format("woff"); }</style>
+</head>
+<body>
+
+<!-- Figure: how it works -->
+<section class="fig" id="fig-how">
+  <h2>How Kuverenga Lens works</h2>
+  <p class="sub">Three steps on the learner's phone. Nothing is uploaded, and it works without internet.</p>
+  <div class="row">
+    <div class="box big">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M9 4 7.2 6H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-3.2L15 4H9zm3 4.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9z"/></svg>
+      <div class="num">1</div><h3>SNAP</h3>
+      <p class="what">The learner points the phone at the board and takes a picture.</p>
+      <ul><li>Phone camera or a saved photo</li><li>The app detects a dark chalkboard automatically</li><li>Rotate or retake if needed</li></ul>
+    </div>
+    <div class="arrow"><svg viewBox="0 0 54 30"><path d="M0 15h44M34 4l12 11-12 11" fill="none" stroke="#1F4D3A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="box big">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M4 5h16v2H4zm0 4h10v2H4zm0 4h16v2H4zm0 4h10v2H4z"/></svg>
+      <div class="num">2</div><h3>CONVERT</h3>
+      <p class="what">The app cleans the photo and turns it into clear text.</p>
+      <ul><li>Turns chalk into dark letters on a light page</li><li>Removes glare and shadows</li><li>Reads the letters (OCR) on the phone</li><li>Drops smudges and marks doubtful words</li></ul>
+    </div>
+    <div class="arrow"><svg viewBox="0 0 54 30"><path d="M0 15h44M34 4l12 11-12 11" fill="none" stroke="#1F4D3A" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <div class="box big">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 8v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg>
+      <div class="num">3</div><h3>READ</h3>
+      <p class="what">The text is shown in a dyslexia-friendly style and read aloud.</p>
+      <ul><li>OpenDyslexic font, so b and d do not flip</li><li>Double line spacing and a coloured background</li><li>Syllable breaker: ma·ngwa·na·ni</li><li>Read-aloud with sentence highlighting</li></ul>
+    </div>
+  </div>
+  <p class="note"><b>Dual language:</b> every screen, the syllable rules and the reading voice work in <b>English</b> and <b>ChiShona</b>.</p>
+</section>
+
+<!-- Figure: architecture -->
+<section class="fig" id="fig-arch">
+  <h2>System architecture</h2>
+  <p class="sub">An installable web app (PWA). Every part runs inside the phone's browser, so no Play Store and no server are needed.</p>
+  <div class="phone">
+    <span class="phone-label">Learner's phone (Android or iPhone)</span>
+    <div class="lane">
+      <div class="comp"><h4>Camera / Gallery</h4><p>HTML file input with <i>capture</i> opens the phone camera.</p><span class="tag">index.html</span></div>
+      <div class="a2">›</div>
+      <div class="comp key"><h4>Image clean-up</h4><p>Grey → invert chalkboard → flatten glare (background subtraction) → optional black &amp; white.</p><span class="tag">Canvas · app.js</span></div>
+      <div class="a2">›</div>
+      <div class="comp key"><h4>OCR engine</h4><p>Tesseract.js (WebAssembly) with the English model; also reads ChiShona letters.</p><span class="tag">vendor/tesseract</span></div>
+      <div class="a2">›</div>
+      <div class="comp"><h4>Text tidy</h4><p>Drops smudge lines, joins wrapped lines, marks low-confidence words.</p><span class="tag">app.js</span></div>
+      <div class="a2">›</div>
+      <div class="comp key"><h4>Dyslexia reader</h4><p>OpenDyslexic, spacing, colours, focus line, syllable breaker (Shona &amp; English).</p><span class="tag">syllables.js</span></div>
+      <div class="a2">›</div>
+      <div class="comp"><h4>Read aloud</h4><p>Phone's text-to-speech voices, sentence highlighting, tap a word to hear it.</p><span class="tag">Web Speech API</span></div>
+    </div>
+    <div class="store">
+      <div class="comp"><h4>Saved notes &amp; settings</h4><p>Stored only on the phone (local storage). Nothing is uploaded.</p></div>
+      <div class="comp"><h4>Offline cache</h4><p>The service worker keeps the app, the OCR engine (about 11 MB) and the font so it works with no data.</p></div>
+      <div class="comp"><h4>Two languages</h4><p>All labels, syllable rules and voice choice switch between English and ChiShona.</p></div>
+    </div>
+  </div>
+  <div class="cloud">
+    <div class="comp"><h4>Free web host (GitHub Pages, https)</h4><p>Used once to download and install. An APK can also be built with PWABuilder and shared by WhatsApp.</p></div>
+    <div class="txt">One-time download → <b>Add to Home screen</b> → works offline in class.<br>No Google Play Store account, fee or review is needed.</div>
+  </div>
+</section>
+
+<!-- Figure: design process -->
+<section class="fig" id="fig-process">
+  <h2>Design process followed</h2>
+  <p class="sub">An engineering design cycle. Testing showed a weakness in v1, which led to v2.</p>
+  <div class="legend"><span style="--c:#1baf7a">Research</span><span style="--c:#2a78d6">Design &amp; build</span><span style="--c:#eb6834">Testing</span></div>
+  <div class="cycle">
+    <div class="stage res"><span class="n">1</span><h4>Identify the need</h4><p>Learners with dyslexia struggle to copy notes from the chalkboard before it is rubbed off.</p><span class="go">›</span></div>
+    <div class="stage res"><span class="n">2</span><h4>Research</h4><p>Dyslexia, reading supports, OCR, offline apps; questionnaires for learners and teachers.</p><span class="go">›</span></div>
+    <div class="stage res"><span class="n">3</span><h4>Design brief</h4><p>Must run on a cheap phone, work offline, avoid the Play Store, and support Shona and English.</p><span class="go">›</span></div>
+    <div class="stage des"><span class="n">4</span><h4>Ideas &amp; sketches</h4><p>Snap → Convert → Read; large buttons; reading tools chosen from the research.</p></div>
+    <div class="stage des"><span class="n">5</span><h4>Prototype v1</h4><p>Camera, contrast stretch, Tesseract OCR, reader, read-aloud, notes.</p><span class="go">›</span></div>
+    <div class="stage tst"><span class="n">6</span><h4>Test v1</h4><p>14 board photos in 7 conditions. Blur and dust fell to 49% and 27%.</p><span class="go">›</span></div>
+    <div class="stage des"><span class="n">7</span><h4>Improve to v2</h4><p>Replaced the contrast stretch with glare flattening; added a junk filter and doubtful-word marks.</p><span class="go">›</span></div>
+    <div class="stage tst"><span class="n">8</span><h4>Retest &amp; evaluate</h4><p>Average accuracy rose from 76% (v1) to 99% (v2). Next: trial with learners.</p></div>
+  </div>
+  <div class="loop"><b>Iteration loop:</b> test → find the weakness → change the design → test again. Every result is saved in <i>testing/accuracy_results_v1.csv</i> and <i>v2.csv</i>.</div>
+</section>
+
+<!-- Figure: image pipeline -->
+<section class="fig" id="fig-pipeline">
+  <h2>What the app does to a photo</h2>
+  <p class="sub">A real run of the app on the "window glare" test photo.</p>
+  <div class="pipe">
+    <div class="stagei"><img src="pipeline/1_photo.jpg" alt=""><h4>1. Photo</h4><p>Light chalk on a dark board, with glare from a window.</p></div>
+    <div class="a2">›</div>
+    <div class="stagei"><img src="pipeline/2_inverted.png" alt=""><h4>2. Invert</h4><p>Chalk becomes dark text, but the glare becomes a dark cloud.</p></div>
+    <div class="a2">›</div>
+    <div class="stagei"><img src="pipeline/3_flattened.png" alt=""><h4>3. Flatten light</h4><p>The background is estimated and removed, so the glare disappears.</p></div>
+    <div class="a2">›</div>
+    <div class="stagei"><div class="textout" id="textout"></div><h4>4. Clear text</h4><p>Text from the OCR in the reader. One word is wrong ("fake"), which the learner can fix.</p></div>
+  </div>
+</section>
+
+<!-- Figure: screen flow -->
+<section class="fig" id="fig-screens">
+  <h2>Screen flow</h2>
+  <p class="sub">The path a learner takes through the app (real screenshots).</p>
+  <div class="flow">
+    <div class="scr"><img src="../evidence/screenshots/01_home_english.png" alt=""><h4>Home</h4><p>Snap the board, choose a photo or type</p></div>
+    <div class="a2">›</div>
+    <div class="scr"><img src="../evidence/screenshots/04_review_cleaned.png" alt=""><h4>Clean the photo</h4><p>Chalkboard mode, glare removal, rotate</p></div>
+    <div class="a2">›</div>
+    <div class="scr"><img src="../evidence/screenshots/05_reader_opendyslexic.png" alt=""><h4>Reader</h4><p>Listen, Syllables, Display tools</p></div>
+    <div class="a2">›</div>
+    <div class="scr"><img src="../evidence/screenshots/12_fix_text.png" alt=""><h4>Fix text</h4><p>Correct any misread word</p></div>
+    <div class="a2">›</div>
+    <div class="scr"><img src="../evidence/screenshots/15_my_notes.png" alt=""><h4>My notes</h4><p>Saved on the phone for revision</p></div>
+  </div>
+</section>
+
+<script>
+  fetch('pipeline/4_text.txt').then(r => r.text()).then(t => {
+    const el = document.getElementById('textout');
+    t.split('\n').forEach(line => {
+      const p = document.createElement('div');
+      p.innerHTML = line.replace(/</g, '&lt;').replace(/\bfake\b/, '<span class="bad">fake</span>');
+      el.appendChild(p);
+    });
+  });
+</script>
+</body>
+</html>

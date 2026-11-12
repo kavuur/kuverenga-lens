@@ -1,0 +1,29 @@
+photo,language,condition,pipeline,word_accuracy_pct,extra_junk_words,seconds,ocr_text
+english_1_good.jpg,english,1_good,raw photo,95.5,1,0.43,Science: Plants /  / Plants need water and sunlight / to grow. The leaves make food / for the plant. Roots fake water / from the soil. /
+english_1_good.jpg,english,1_good,with clean-up,100.0,0,0.22,Science: Plants / Plants need water and sunlight to grow. The leaves make food for the plant. Roots take water from the soil.
+english_2_angle.jpg,english,2_angle,raw photo,100.0,0,0.37,Science: Plants /  / Plants need water and sunlight / to grow. The leaves make food / for the plant. Roots take water / from the soil. /
+english_2_angle.jpg,english,2_angle,with clean-up,100.0,0,0.23,Science: Plants / Plants need water and sunlight to grow. The leaves make food for the plant. Roots take water from the soil.
+english_3_shake.jpg,english,3_shake,raw photo,100.0,0,0.34,Science: Plants / Plants need water and sunlight / to grow. The leaves make food / for the plant. Roots take water / from the soil. /
+english_3_shake.jpg,english,3_shake,with clean-up,100.0,0,0.21,Science: Plants / Plants need water and sunlight to grow. The leaves make food for the plant. Roots take water from the soil.
+english_4_dim.jpg,english,4_dim,raw photo,95.5,1,0.33,Science: Plants /  / Plants need water and sunlight / to grow. The leaves make food / for the plant. Roots fake water / from the soil. /
+english_4_dim.jpg,english,4_dim,with clean-up,100.0,0,0.2,Science: Plants / Plants need water and sunlight to grow. The leaves make food for the plant. Roots take water from the soil.
+english_5_glare.jpg,english,5_glare,raw photo,72.7,1,0.28,Science: Plants /  / Plants need water a /  / to grow. The leaves |                                          | / for the plant. Roots ¥ /  / from the soil. /
+english_5_glare.jpg,english,5_glare,with clean-up,95.5,1,0.21,Science: Plants / Plants need water and sunlight to grow. The leaves make food for the plant. Roots fake water from the soil.
+english_6_far.jpg,english,6_far,raw photo,100.0,0,0.2,Science: Plants /  / Plants need water and sunlight / to grow. The leaves make food /  / for the plant. Roots take water / from the soil. /
+english_6_far.jpg,english,6_far,with clean-up,100.0,0,0.11,Science: Plants / Plants need water and sunlight to grow. The leaves make food for the plant. Roots take water from the soil.
+english_7_dusty.jpg,english,7_dusty,raw photo,95.5,1,0.36,Science: Plants /  / Plants need water and sunlight / to grow. The leaves make food / for the plant. Roots fake water / from the soil. /
+english_7_dusty.jpg,english,7_dusty,with clean-up,95.5,1,0.21,Science: Plants / Plants need water and sunlight to grow. The leaves make food for the plant. Roots fake water from the soil.
+shona_1_good.jpg,shona,1_good,raw photo,100.0,0,0.34,Chishona: Rondedzero /  / Mwana anoenda kuchikoro / mangwanani. Amai vari kubika / sadza. Baba vari kurima / munda wechibage. /
+shona_1_good.jpg,shona,1_good,with clean-up,100.0,0,0.21,Chishona: Rondedzero / Mwana anoenda kuchikoro mangwanani. Amai vari kubika sadza. Baba vari kurima munda wechibage.
+shona_2_angle.jpg,shona,2_angle,raw photo,100.0,0,0.38,Chishona: Rondedzero / Mwana anoenda kuchikoro / mangwanani. Amai vari kubika / sadza. Baba vari kurima / munda wechibage. /
+shona_2_angle.jpg,shona,2_angle,with clean-up,100.0,0,0.24,Chishona: Rondedzero / Mwana anoenda kuchikoro mangwanani. Amai vari kubika sadza. Baba vari kurima munda wechibage.
+shona_3_shake.jpg,shona,3_shake,raw photo,100.0,0,0.32,Chishona: Rondedzero /  / Mwana anoenda kuchikoro / mangwanani. Amai vari kubika / sadza. Baba vari kurima / munda wechibage. /
+shona_3_shake.jpg,shona,3_shake,with clean-up,93.3,1,0.2,Chishona: Rondedzero / Mwana anoenda kuchikoro mangwanani. Amai vari kubika sad2a. Baba vari kurima munda wechibage.
+shona_4_dim.jpg,shona,4_dim,raw photo,100.0,0,0.33,Chishona: Rondedzero / Mwana anoenda kuchikoro / mangwanani. Amai vari kubika / sadza. Baba vari kurima / munda wechibage. /
+shona_4_dim.jpg,shona,4_dim,with clean-up,100.0,0,0.2,Chishona: Rondedzero / Mwana anoenda kuchikoro mangwanani. Amai vari kubika sadza. Baba vari kurima munda wechibage.
+shona_5_glare.jpg,shona,5_glare,raw photo,73.3,2,0.3,Chishona: Rondedzero /  / Mwana anoenda kuchi /  / mangwanani. Amai                                            | / sadza. Baba vari kuri /  / munda wechibage. /
+shona_5_glare.jpg,shona,5_glare,with clean-up,100.0,0,0.22,Chishona: Rondedzero / Mwana anoenda kuchikoro mangwanani. Amai vari kubika sadza. Baba vari kurima munda wechibage.
+shona_6_far.jpg,shona,6_far,raw photo,100.0,0,0.2,Chishona: Rondedzero /  / Mwana anoenda kuchikoro / mangwanani. Amai vari kubika / sadza. Baba vari kurima / munda wechibage. /
+shona_6_far.jpg,shona,6_far,with clean-up,100.0,0,0.11,Chishona: Rondedzero / Mwana anoenda kuchikoro mangwanani. Amai vari kubika sadza. Baba vari kurima munda wechibage.
+shona_7_dusty.jpg,shona,7_dusty,raw photo,100.0,0,0.35,Chishona: Rondedzero /  / Mwana anoenda kuchikoro / mangwanani. Amai vari kubika / sadza. Baba vari kurima / munda wechibage. /
+shona_7_dusty.jpg,shona,7_dusty,with clean-up,100.0,0,0.21,Chishona: Rondedzero / Mwana anoenda kuchikoro mangwanani. Amai vari kubika sadza. Baba vari kurima munda wechibage.

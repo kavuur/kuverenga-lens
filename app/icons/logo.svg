@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Kuverenga Lens logo: a chalkboard tile with a reading lens that makes letters clear -->
+  <rect width="512" height="512" rx="112" fill="#1F4D3A"/>
+  <rect x="40" y="40" width="432" height="432" rx="84" fill="none" stroke="#2E6B52" stroke-width="10"/>
+  <!-- faint chalk lines (the board) -->
+  <path d="M92 150h170M92 196h120M92 242h150" stroke="#FFF8E7" stroke-opacity=".28" stroke-width="12" stroke-linecap="round"/>
+  <!-- lens -->
+  <line x1="352" y1="352" x2="430" y2="430" stroke="#F2B33D" stroke-width="40" stroke-linecap="round"/>
+  <circle cx="268" cy="268" r="128" fill="#FFF8E7"/>
+  <circle cx="268" cy="268" r="128" fill="none" stroke="#F2B33D" stroke-width="30"/>
+  <!-- clear, heavy-bottomed letters inside the lens -->
+  <text x="268" y="314" text-anchor="middle" font-family="Verdana, DejaVu Sans, sans-serif" font-weight="700" font-size="124" fill="#1F4D3A" letter-spacing="6">bd</text>
+  <rect x="190" y="322" width="156" height="12" rx="6" fill="#F2B33D"/>
+</svg>

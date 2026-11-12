@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Kuverenga Lens</title>
+  <meta name="description" content="Turn the chalkboard into a personal, dyslexia-friendly reader. Snap, convert, read.">
+  <meta name="theme-color" content="#1F4D3A">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/logo.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Kuverenga Lens">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <img src="icons/logo.svg" alt="" class="topbar-logo" width="36" height="36">
+    <div class="topbar-name">Kuverenga <span>Lens</span></div>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-lang="en" class="on">EN</button>
+      <button type="button" data-lang="sn">SN</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HOME -->
+    <section id="screen-home" class="screen active" aria-labelledby="home-title">
+      <div class="warn" id="file-warning" role="alert" hidden>
+        <b data-i18n="fileTitle">Open the app from its web link</b>
+        <span data-i18n="fileMode">The app was opened as a file, so the phone blocks the reading engine. Open it from its web link (https://…) instead.</span>
+      </div>
+      <div class="hero">
+        <h1 id="home-title" data-i18n="heroTitle">Read the board your way</h1>
+        <p data-i18n="heroText">Take a photo of the chalkboard. Kuverenga Lens turns it into clear text and reads it to you.</p>
+      </div>
+
+      <ol class="steps" aria-label="How it works">
+        <li><span class="step-num">1</span><b data-i18n="snap">Snap</b><small data-i18n="snapHint">Photo of the board</small></li>
+        <li><span class="step-num">2</span><b data-i18n="convert">Convert</b><small data-i18n="convertHint">Photo to clear text</small></li>
+        <li><span class="step-num">3</span><b data-i18n="read">Read</b><small data-i18n="readHint">See it and hear it</small></li>
+      </ol>
+
+      <label class="btn btn-primary btn-xl" for="camera-input">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 4 7.2 6H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-3.2L15 4H9zm3 4.5a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9zm0 2a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z"/></svg>
+        <span data-i18n="snapBoard">Snap the board</span>
+      </label>
+      <input id="camera-input" type="file" accept="image/*" capture="environment" hidden>
+
+      <div class="btn-row">
+        <label class="btn btn-secondary" for="upload-input">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zm7-16-5 5h3v6h4V9h3l-5-5z"/></svg>
+          <span data-i18n="upload">Choose a photo</span>
+        </label>
+        <input id="upload-input" type="file" accept="image/*" hidden>
+        <button type="button" class="btn btn-secondary" id="btn-type">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17.3V21h3.7L17.8 9.9l-3.7-3.7L3 17.3zM20.7 7a1 1 0 0 0 0-1.4l-2.3-2.3a1 1 0 0 0-1.4 0l-1.8 1.8 3.7 3.7L20.7 7z"/></svg>
+          <span data-i18n="typeText">Type or paste</span>
+        </button>
+      </div>
+
+      <button type="button" class="btn btn-ghost" id="btn-install" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 1H7a2 2 0 0 0-2 2v18a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm0 18H7V5h10v14zm-5-1 4-4h-3V8h-2v6H8l4 4z"/></svg>
+        <span data-i18n="install">Install on this phone</span>
+      </button>
+
+      <div class="card" id="recent-card" hidden>
+        <h2 data-i18n="recent">Recent notes</h2>
+        <ul class="note-list" id="recent-list"></ul>
+      </div>
+    </section>
+
+    <!-- REVIEW / CLEAN PHOTO -->
+    <section id="screen-review" class="screen" aria-labelledby="review-title">
+      <h1 id="review-title" class="screen-title" data-i18n="cleanTitle">Clean the photo</h1>
+      <div class="preview-wrap">
+        <canvas id="preview-canvas" aria-label="Cleaned photo preview"></canvas>
+      </div>
+
+      <div class="card controls">
+        <div class="control">
+          <label class="switch">
+            <input type="checkbox" id="opt-board" checked>
+            <span class="slider" aria-hidden="true"></span>
+            <span data-i18n="boardMode">Chalkboard (light writing on dark board)</span>
+          </label>
+        </div>
+        <div class="control">
+          <label for="opt-contrast" data-i18n="contrast">Contrast</label>
+          <input type="range" id="opt-contrast" min="0" max="100" value="75">
+        </div>
+        <div class="control">
+          <label class="switch">
+            <input type="checkbox" id="opt-bw">
+            <span class="slider" aria-hidden="true"></span>
+            <span data-i18n="bw">Sharp black &amp; white</span>
+          </label>
+        </div>
+        <div class="control row">
+          <button type="button" class="btn btn-small" id="btn-rotate">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V1L7 6l5 5V7a6 6 0 1 1-6 6H4a8 8 0 1 0 8-8z"/></svg>
+            <span data-i18n="rotate">Rotate</span>
+          </button>
+          <button type="button" class="btn btn-small" id="btn-retake">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11H7.8l5.6-5.6L12 4l-8 8 8 8 1.4-1.4L7.8 13H20v-2z"/></svg>
+            <span data-i18n="retake">Retake</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="card controls">
+        <div class="control">
+          <span class="control-label" data-i18n="engine">Reading engine</span>
+          <div class="seg seg-engine" id="seg-engine">
+            <button type="button" data-v="fast"><b data-i18n="engFast">Fast</b><small data-i18n="engFastHint">print &amp; neat writing</small></button>
+            <button type="button" data-v="hand"><b data-i18n="engHand">Handwriting</b><small data-i18n="engHandHint">better for chalk handwriting</small></button>
+          </div>
+          <p class="voice-note" id="hand-note" data-i18n="handNote" hidden>Handwriting mode downloads a 75 MB reader once (use Wi-Fi). After that it works offline.</p>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-primary btn-xl" id="btn-convert">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v2H4zm0 4h10v2H4zm0 4h16v2H4zm0 4h10v2H4z"/></svg>
+        <span data-i18n="convertBtn">Convert to text</span>
+      </button>
+
+      <div class="progress" id="ocr-progress" hidden>
+        <div class="progress-bar"><div id="ocr-bar"></div></div>
+        <p id="ocr-status" aria-live="polite">…</p>
+      </div>
+    </section>
+
+    <!-- READER -->
+    <section id="screen-reader" class="screen" aria-labelledby="reader-title">
+      <h1 id="reader-title" class="visually-hidden" data-i18n="read">Read</h1>
+
+      <div class="reader-toolbar" role="toolbar" aria-label="Reading tools">
+        <button type="button" class="tool tool-play" id="btn-play" aria-label="Listen">
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="ic-play"><path d="M8 5v14l11-7z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="ic-pause"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+          <span data-i18n="listen">Listen</span>
+        </button>
+        <button type="button" class="tool" id="btn-stop" aria-label="Stop">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6h12v12H6z"/></svg>
+        </button>
+        <button type="button" class="tool" id="btn-syll" aria-pressed="false">
+          <span class="tool-glyph">ma·ni</span>
+          <span data-i18n="syllables">Syllables</span>
+        </button>
+        <button type="button" class="tool" id="btn-display" aria-expanded="false" aria-controls="display-panel">
+          <span class="tool-glyph">Aa</span>
+          <span data-i18n="display">Display</span>
+        </button>
+      </div>
+
+      <div class="card display-panel" id="display-panel" hidden>
+        <div class="control">
+          <span class="control-label" data-i18n="font">Font</span>
+          <div class="seg" id="seg-font">
+            <button type="button" data-v="dyslexic" class="seg-dys">OpenDyslexic</button>
+            <button type="button" data-v="sans">Verdana</button>
+          </div>
+        </div>
+        <div class="control">
+          <label for="opt-size" data-i18n="size">Text size</label>
+          <input type="range" id="opt-size" min="18" max="40" step="1" value="24">
+        </div>
+        <div class="control">
+          <label for="opt-spacing" data-i18n="spacing">Line spacing</label>
+          <input type="range" id="opt-spacing" min="1.4" max="3" step="0.1" value="2">
+        </div>
+        <div class="control">
+          <span class="control-label" data-i18n="background">Background</span>
+          <div class="swatches" id="swatches">
+            <button type="button" data-v="cream" style="--sw:#FFF6DC" aria-label="Cream"></button>
+            <button type="button" data-v="blue" style="--sw:#DCEBFA" aria-label="Light blue"></button>
+            <button type="button" data-v="green" style="--sw:#DFF2E1" aria-label="Light green"></button>
+            <button type="button" data-v="peach" style="--sw:#FBE3D3" aria-label="Peach"></button>
+            <button type="button" data-v="yellow" style="--sw:#FFF3A8" aria-label="Yellow"></button>
+            <button type="button" data-v="dark" style="--sw:#20262B" aria-label="Dark"></button>
+          </div>
+        </div>
+        <div class="control">
+          <label for="opt-rate" data-i18n="speed">Reading speed</label>
+          <input type="range" id="opt-rate" min="0.5" max="1.3" step="0.05" value="0.85">
+        </div>
+        <div class="control">
+          <label class="switch">
+            <input type="checkbox" id="opt-focus">
+            <span class="slider" aria-hidden="true"></span>
+            <span data-i18n="focus">Focus line (dim other sentences)</span>
+          </label>
+        </div>
+        <p class="voice-note" id="voice-note"></p>
+      </div>
+
+      <div class="reader-meta">
+        <span data-i18n="textLang">Text language:</span>
+        <button type="button" class="lang-chip" id="btn-textlang"></button>
+      </div>
+      <p class="unsure-note" id="unsure-note" data-i18n="unsureNote" hidden>Words with a wavy line may be wrong. Tap Fix text to correct them.</p>
+      <article class="reader" id="reader" aria-live="off"></article>
+      <p class="tap-hint" data-i18n="tapHint">Tip: tap any word to hear it on its own.</p>
+
+      <div class="btn-row">
+        <button type="button" class="btn btn-secondary" id="btn-edit">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17.3V21h3.7L17.8 9.9l-3.7-3.7L3 17.3zM20.7 7a1 1 0 0 0 0-1.4l-2.3-2.3a1 1 0 0 0-1.4 0l-1.8 1.8 3.7 3.7L20.7 7z"/></svg>
+          <span data-i18n="fix">Fix text</span>
+        </button>
+        <button type="button" class="btn btn-primary" id="btn-save">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7l-4-4zm-5 16a3 3 0 1 1 0-6 3 3 0 0 1 0 6zm3-10H5V5h10v4z"/></svg>
+          <span data-i18n="save">Save note</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- EDIT -->
+    <section id="screen-edit" class="screen" aria-labelledby="edit-title">
+      <h1 id="edit-title" class="screen-title" data-i18n="fixTitle">Fix or type the text</h1>
+      <p class="muted" data-i18n="fixHint">Correct any words the camera read wrongly, then tap Done.</p>
+      <textarea id="edit-text" rows="12" spellcheck="true"></textarea>
+      <div class="btn-row">
+        <button type="button" class="btn btn-secondary" id="btn-edit-cancel" data-i18n="cancel">Cancel</button>
+        <button type="button" class="btn btn-primary" id="btn-edit-done" data-i18n="done">Done</button>
+      </div>
+    </section>
+
+    <!-- NOTES -->
+    <section id="screen-notes" class="screen" aria-labelledby="notes-title">
+      <h1 id="notes-title" class="screen-title" data-i18n="myNotes">My notes</h1>
+      <ul class="note-list" id="notes-list"></ul>
+      <p class="empty muted" id="notes-empty" data-i18n="noNotes">No saved notes yet. Snap the board to make your first one.</p>
+    </section>
+
+    <!-- HELP -->
+    <section id="screen-help" class="screen" aria-labelledby="help-title">
+      <h1 id="help-title" class="screen-title" data-i18n="help">Help</h1>
+      <div class="card prose">
+        <h2 data-i18n="h1">Getting a good photo</h2>
+        <ul>
+          <li data-i18n="h1a">Stand straight in front of the board, not at an angle.</li>
+          <li data-i18n="h1b">Fill the screen with the part you want to read.</li>
+          <li data-i18n="h1c">Avoid glare from windows. Hold the phone still.</li>
+          <li data-i18n="h1d">Clear, neat printing works best. Joined handwriting may need fixing.</li>
+        </ul>
+        <h2 data-i18n="h2">Reading tools</h2>
+        <ul>
+          <li data-i18n="h2a">OpenDyslexic font has heavy letter bottoms so b and d do not flip.</li>
+          <li data-i18n="h2b">Syllables splits long words into small parts: ma·ngwa·na·ni.</li>
+          <li data-i18n="h2c">Change the background colour until reading feels comfortable.</li>
+          <li data-i18n="h2d">Listen reads the text aloud and highlights each sentence.</li>
+        </ul>
+        <h2 data-i18n="h3">Privacy</h2>
+        <p data-i18n="h3a">Everything happens on this phone. Photos and notes are never uploaded.</p>
+        <p class="muted small">Kuverenga Lens v1.0 · RISED 301 Innovation Project · University of Zimbabwe</p>
+      </div>
+    </section>
+  </main>
+
+  <nav class="tabbar" aria-label="Main">
+    <button type="button" data-go="home" class="on">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+      <span data-i18n="home">Home</span>
+    </button>
+    <button type="button" data-go="notes">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+      <span data-i18n="notes">Notes</span>
+    </button>
+    <button type="button" data-go="help">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 18h2v-2h-2v2zm1-16a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 18a8 8 0 1 1 0-16 8 8 0 0 1 0 16zm0-14a4 4 0 0 0-4 4h2a2 2 0 1 1 4 0c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5a4 4 0 0 0-4-4z"/></svg>
+      <span data-i18n="help">Help</span>
+    </button>
+  </nav>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="vendor/tesseract/tesseract.min.js"></script>
+  <script src="js/syllables.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

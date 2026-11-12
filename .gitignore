@@ -1,0 +1,9 @@
+# Windows download markers
+*:Zone.Identifier
+
+# Python
+__pycache__/
+*.pyc
+
+# Built zip of the app folder (rebuild with: cd app && zip -r ../kuverenga-lens-app.zip .)
+kuverenga-lens-app.zip

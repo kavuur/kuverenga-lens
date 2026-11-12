@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Kuverenga Lens poster</title>
+<style>
+  @font-face { font-family: "OpenDyslexic"; src: url("../app/fonts/OpenDyslexic-Regular.woff") format("woff"); }
+  @font-face { font-family: "OpenDyslexic"; font-weight: 700; src: url("../app/fonts/OpenDyslexic-Bold.woff") format("woff"); }
+  @page { size: 594mm 841mm; margin: 0; }
+  :root { --board:#1F4D3A; --board2:#2E6B52; --chalk:#FFF8E7; --sun:#F2B33D; --ink:#1B1F1D; --ink2:#4a4f4c; --line:#DCD6C6; --blue:#2a78d6; --orange:#eb6834; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body { width: 2245px; height: 3179px; background: var(--chalk); font-family: Verdana, "DejaVu Sans", sans-serif; color: var(--ink); overflow: hidden; }
+  header { background: var(--board); color: var(--chalk); padding: 46px 80px 40px; display: flex; align-items: center; gap: 60px; position: relative; }
+  header img { width: 230px; height: 230px; border-radius: 60px; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+  header h1 { font-size: 128px; margin: 0; line-height: 1; letter-spacing: 2px; }
+  header h1 span { color: var(--sun); }
+  header .tag { font-size: 42px; margin: 16px 0 12px; color: #e2eee7; line-height: 1.3; }
+  header .who { font-size: 30px; color: #b9d2c4; }
+  header .who b { color: var(--chalk); }
+  .ribbon { background: var(--sun); color: #3d2a00; font-size: 36px; font-weight: 700; padding: 18px 90px; display: flex; justify-content: space-between; }
+  main { padding: 30px 50px 0; display: flex; gap: 30px; align-items: flex-start; }
+  .col { flex: 1; display: flex; flex-direction: column; gap: 28px; min-width: 0; }
+  .card { background: #fff; border-radius: 30px; padding: 28px 34px; border: 3px solid var(--line); }
+  .card h2 { margin: 0 0 14px; font-size: 40px; color: var(--board); display: flex; align-items: center; gap: 18px; }
+  .card h2 .n { width: 56px; height: 56px; border-radius: 50%; background: var(--board); color: var(--sun); display: grid; place-items: center; font-size: 36px; flex: none; }
+  .card p, .card li { font-size: 25px; line-height: 1.42; color: var(--ink2); }
+  .card p { margin: 0 0 10px; }
+  .card ul { margin: 0; padding-left: 32px; }
+  img.chart { width: 100%; max-height: 640px; object-fit: contain; display: block; }
+  .card li { margin-bottom: 8px; }
+  .card b { color: var(--ink); }
+  .span2 { grid-column: span 2; }
+  .span3 { grid-column: span 3; }
+  .big-stat { display: flex; gap: 14px; margin: 10px 0 8px; }
+  .stat { flex: 1; min-width: 0; background: var(--chalk); border-radius: 22px; padding: 16px 8px; text-align: center; border: 3px solid var(--line); }
+  .stat .v { font-size: 50px; font-weight: 700; color: var(--board); line-height: 1.05; }
+  .stat .v.blue { color: var(--blue); } .stat .v.orange { color: var(--orange); }
+  .stat .l { font-size: 25px; color: var(--ink2); margin-top: 6px; }
+  img.full { width: 100%; display: block; border-radius: 18px; }
+  .steps { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .step { background: var(--board); color: var(--chalk); border-radius: 20px; padding: 16px 18px; }
+  .step .k { font-size: 34px; font-weight: 700; color: var(--sun); letter-spacing: 2px; }
+  .step p { color: #dbe9e1; font-size: 22px; margin: 8px 0 0; line-height: 1.45; }
+  .phones { display: flex; gap: 22px; justify-content: space-between; margin-top: 6px; }
+  .phones figure { margin: 0; text-align: center; flex: 1; }
+  .phones img { width: 100%; height: 400px; object-fit: cover; object-position: top; border-radius: 30px 30px 0 0; border: 8px solid #222; border-bottom: 0; display: block; }
+  .phones figcaption { font-size: 22px; color: var(--ink2); margin-top: 12px; }
+  .dys { font-family: "OpenDyslexic", sans-serif; background: #FFF6DC; border-radius: 22px; padding: 14px 24px; font-size: 27px; line-height: 1.9; word-spacing: .15em; margin: 10px 0 18px; border: 3px solid #eadfba; }
+  .dys .d { color: #C2410C; font-weight: 700; }
+  .brief { background: #EAF3EE; border-left: 12px solid var(--board); border-radius: 18px; padding: 16px 24px; font-size: 25px; line-height: 1.5; color: var(--ink); margin-bottom: 16px; }
+  .cap { font-size: 23px; color: var(--ink2); margin: 10px 0 0; }
+  .imp { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 4px; }
+  .imp .wide { grid-column: span 2; }
+  .imp div { background: var(--chalk); border-radius: 18px; padding: 14px 16px; border: 3px solid var(--line); }
+  .imp h3 { margin: 0 0 6px; font-size: 27px; color: var(--board); }
+  .imp p { font-size: 22px; margin: 0; line-height: 1.4; }
+  .install { display: flex; gap: 30px; align-items: center; }
+  .qr { flex: none; width: 200px; height: 200px; border: 6px dashed var(--board2); border-radius: 22px; display: grid; place-items: center; text-align: center; font-size: 26px; color: var(--board); background: #fff; font-weight: 700; padding: 20px; }
+  footer { position: absolute; bottom: 0; left: 0; right: 0; background: var(--board); color: #cfe0d6; font-size: 25px; padding: 26px 90px; display: flex; justify-content: space-between; gap: 40px; }
+  footer b { color: var(--chalk); }
+  .ph { background: #FFF2A8; color: #333; padding: 0 8px; border-radius: 6px; }
+</style>
+</head>
+<body>
+<header>
+  <img src="../app/icons/icon-512.png" alt="Kuverenga Lens logo">
+  <div>
+    <h1>Kuverenga <span>Lens</span></h1>
+    <p class="tag">A phone app that turns the chalkboard into a personal, dyslexia-friendly teacher, in ChiShona and English.</p>
+    <p class="who"><b><span class="ph">[Student name]</span></b> · <span class="ph">[Reg. no.]</span> · RISED 301 Innovation Project · Faculty of Education, University of Zimbabwe · 2026</p>
+  </div>
+</header>
+<div class="ribbon"><span>SNAP the board</span><span>→</span><span>CONVERT to clear text</span><span>→</span><span>READ it and HEAR it</span></div>
+
+<main>
+ <div class="col">
+  <section class="card">
+    <h2><span class="n">1</span>The problem</h2>
+    <p>In Zimbabwean classrooms, notes go on the <b>chalkboard</b> and learners must copy them before the board is wiped.</p>
+    <p>For learners with <b>dyslexia</b> this is a daily barrier: letters like <b>b</b> and <b>d</b> swap, they lose their place, and they copy slowly. Glare, chalk dust and distance make it worse.</p>
+    <p>Up to <b>15–20%</b> of people show some signs of dyslexia (IDA), so there are several such learners in every class.</p>
+    <p><b>Needs assessment:</b> <span class="ph">[Add your key findings: how many teachers said slow copying delays lessons, and what share of learners find the board hard to read]</span></p>
+  </section>
+  <section class="card">
+    <h2><span class="n">2</span>Aim &amp; hypothesis</h2>
+    <div class="brief"><b>Aim:</b> design, build and test a free phone app that turns chalkboard notes into dyslexia-friendly text that learners can read and hear, in ChiShona and English.</div>
+    <p><b>Hypothesis:</b> cleaning the photo (inverting the chalk and removing glare) before text recognition gives <b>higher word accuracy</b> than using the raw photo.</p>
+    <p><b>Design brief:</b> it must run on cheap phones, work <b>offline</b>, need <b>no Play Store</b>, keep data <b>private</b>, and support <b>both languages</b>.</p>
+  </section>
+  <section class="card">
+    <h2><span class="n">3</span>What makes it innovative</h2>
+    <div class="dys">Plants need <span class="d">b</span>oth water an<span class="d">d</span> sunlight.<br>ma·ngwa·na·ni · ku·chi·ko·ro</div>
+    <ul>
+      <li><b>OpenDyslexic</b> font: heavy bottoms stop b/d flipping</li>
+      <li><b>Double spacing</b> and calm coloured backgrounds</li>
+      <li><b>Syllable breaker</b> for ChiShona and English</li>
+      <li><b>Reads aloud</b> and highlights each sentence</li>
+      <li><b>Dual language</b>, <b>offline</b> and <b>private</b></li>
+    </ul>
+  </section>
+  <section class="card">
+    <h2><span class="n">4</span>Cost &amp; enterprise</h2>
+    <div class="big-stat"><div class="stat"><div class="v">$135</div><div class="l">prototype cost</div></div><div class="stat"><div class="v">$0</div><div class="l">for learners</div></div></div>
+    <p><b>Social enterprise:</b> free for learners; schools pay <b>$30 a year</b> for training and support, which breaks even at about <b>13 schools</b>.</p>
+    <p><b>Where:</b> pilot at <span class="ph">[School name, District]</span>, then nearby schools.</p>
+  </section>
+ </div>
+
+ <div class="col">
+  <section class="card">
+    <h2><span class="n">5</span>Method: how it was made</h2>
+    <div class="steps">
+      <div class="step"><div class="k">SNAP</div><p>Phone camera captures the board.</p></div>
+      <div class="step"><div class="k">CONVERT</div><p>Invert chalk, flatten glare, OCR on the phone.</p></div>
+      <div class="step"><div class="k">READ</div><p>Dyslexia reader and read-aloud.</p></div>
+    </div>
+    <img class="full" src="../diagrams/diagram_pipeline.png" alt="" style="margin-top:18px">
+    <p class="cap">Real output of the prototype on a board photo with window glare.</p>
+    <p style="margin-top:12px"><b>Built with free tools:</b> HTML, CSS and JavaScript (installable web app), <b>Tesseract.js</b> OCR, the <b>OpenDyslexic</b> font, the phone's <b>text-to-speech</b>, and Python + Playwright for <b>automated tests</b>.</p>
+    <p><b>Design cycle:</b> need → brief → prototype v1 → test 14 board photos in 7 conditions → improve v2 → retest.</p>
+  </section>
+  <section class="card">
+    <h2><span class="n">6</span>Results</h2>
+    <div class="big-stat">
+      <div class="stat"><div class="v" style="color:#8a8a83">95.2%</div><div class="l">Raw photo</div></div>
+      <div class="stat"><div class="v orange">76.3%</div><div class="l">Prototype v1</div></div>
+      <div class="stat"><div class="v blue">98.9%</div><div class="l">Prototype v2</div></div>
+    </div>
+    <p class="cap" style="margin:0 0 12px">Average word accuracy, 14 simulated board photos (English and ChiShona, 7 conditions)</p>
+    <img class="chart" src="../charts/fig_accuracy_by_condition.png" alt="">
+  </section>
+  <section class="card">
+    <h2><span class="n">7</span>Discussion</h2>
+    <p><b>v1 was worse than doing nothing:</b> its strong contrast step destroyed blurred (49%) and dusty (27%) writing.</p>
+    <p><b>v2 fixed this</b> by flattening the background, and <b>window glare rose from 73% to 98%</b>. ChiShona was read as accurately as English.</p>
+    <p><b>Limitations:</b> the photos were simulated; joined handwriting is harder; most phones lack a Shona voice. <b>Next:</b> trial with real learners and real boards.</p>
+  </section>
+ </div>
+
+ <div class="col">
+  <section class="card">
+    <h2><span class="n">8</span>The working app</h2>
+    <div class="phones">
+      <figure><img src="../evidence/screenshots/01_home_english.png" alt=""><figcaption>Snap the board</figcaption></figure>
+      <figure><img src="../evidence/screenshots/10_reader_listening.png" alt=""><figcaption>Listen</figcaption></figure>
+      <figure><img src="../evidence/screenshots/13_reader_shona_syllables.png" alt=""><figcaption>ChiShona syllables</figcaption></figure>
+    </div>
+    <div class="phones" style="margin-top:18px">
+      <figure><img src="../evidence/screenshots/04_review_cleaned.png" alt=""><figcaption>Clean the photo</figcaption></figure>
+      <figure><img src="../evidence/screenshots/07_display_panel.png" alt=""><figcaption>Font, spacing, colour</figcaption></figure>
+      <figure><img src="../evidence/screenshots/02_home_shona.png" alt=""><figcaption>App in ChiShona</figcaption></figure>
+    </div>
+  </section>
+  <section class="card">
+    <h2><span class="n">9</span>Significance</h2>
+    <div class="imp">
+      <div><h3>Self</h3><p>Research, design, coding and enterprise skills; a more inclusive teacher.</p></div>
+      <div><h3>Learners</h3><p>Read and hear notes at their own pace, in their own language.</p></div>
+      <div><h3>Community</h3><p>Free and offline for families with little data.</p></div>
+      <div><h3>Zimbabwe</h3><p>Inclusive education and ChiShona in technology.</p></div>
+      <div class="wide"><h3>Global village</h3><p>SDG 4: inclusive, quality education for all; works in any chalkboard classroom.</p></div>
+    </div>
+  </section>
+  <section class="card">
+    <h2><span class="n">10</span>Conclusion</h2>
+    <p>A free, offline, bilingual app can turn chalkboard notes into accessible text. Careful image cleaning matters: v2 reached <b>98.9%</b> word accuracy and solved window glare, which <b>supports the hypothesis</b>.</p>
+    <div class="install">
+      <div class="qr">[QR code of app link]</div>
+      <p style="margin:0"><b>Try it, with no Play Store:</b> scan the code, open the link and tap <b>"Add to Home screen"</b>. The app works offline after the first visit.</p>
+    </div>
+  </section>
+ </div>
+</main>
+
+<footer>
+  <span><b>Acknowledgements:</b> <span class="ph">[Lecturer]</span> for guidance · <span class="ph">[School]</span> head, teachers and learners for the needs assessment and trial · Tesseract.js and OpenDyslexic open-source projects.</span>
+  <span><b>Key references:</b> IDA (2002); Rello &amp; Baeza-Yates (2013); Zorzi et al. (2012); Wood et al. (2018); Smith (2007); OECD (2018).</span>
+</footer>
+</body>
+</html>
